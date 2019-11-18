@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Student>
+
+@{
+    ViewBag.Title = "ScoresRazor";
+}
+
+<h2>ScoresRazor</h2>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Chinese)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.English)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Math)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Total)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            var total = m.Math + m.Chinese + m.English;
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => m.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => m.Name)
+                </td>
+                @if (m.Chinese < 60)
+                {
+                    <td class="poor"> @Html.DisplayFor(x => m.Chinese) </td>
+                }
+                else if (m.Chinese >= 95)
+                {
+                    <td class="excellent"> @Html.DisplayFor(x => m.Chinese) </td>
+                }
+                else
+                {
+                    <td> @Html.DisplayFor(x => m.Chinese) </td>
+                }
+                @if (m.English < 60)
+                {
+                    <td class="poor">
+                        @Html.DisplayFor(x => m.English)
+                    </td>
+                }
+                else if (m.English >= 95)
+                {
+                    <td class="excellent">
+                        @Html.DisplayFor(x => m.English)
+                    </td>
+                }
+                else
+                {
+                    <td> @Html.DisplayFor(x => m.English) </td>
+                }
+                @if (m.Math < 60)
+                {
+                    <td class="poor">
+                        @Html.DisplayFor(x => m.Math)
+                    </td>
+                }
+                else if (m.Math >= 95)
+                {
+                    <td class="excellent">
+                        @Html.DisplayFor(x => m.Math)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(x => m.Math)
+                    </td>
+                }
+                @if (m.Id == ViewBag.TopID)
+                {
+                    <td class="Top1">
+                        @Html.DisplayFor(x => m.Total)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(x => m.Total)
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+@section TopCSS{
+    <style>
+        .poor {
+            color: white;
+            background-color: red;
+        }
+
+        .excellent {
+            background-color:palegreen;
+        }
+        th{
+            color:white;
+            background-color:black;
+            text-align:center;
+        }
+        td:hover{
+            background-color:antiquewhite;
+        }
+        .Top1{
+            background-color:orangered;
+            font-size:1.2em;
+            font-weight:800;
+        }
+        .Top1::after{
+            content:'(第一名)';
+        }
+
+    </style>
+}
