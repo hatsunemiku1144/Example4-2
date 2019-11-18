@@ -8,7 +8,8 @@ namespace MVCRazor_Clone.Models
 {
     public class Student
     {
-        [Display(Name="學號")]
+        [Display(Name = "學號")]
+        [DisplayFormat(DataFormatString ="{0:0000}")]
         public int Id { get; set; }
         [Display(Name = "姓名")]
         public string Name { get; set; }

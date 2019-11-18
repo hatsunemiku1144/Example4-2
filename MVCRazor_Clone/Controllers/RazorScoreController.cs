@@ -41,5 +41,9 @@ namespace MVCRazor_Clone.Controllers
            
             return View(students);
         }
+        public ActionResult RazorScorePure()
+        {
+            return View(students);
+        }
     }
 }
